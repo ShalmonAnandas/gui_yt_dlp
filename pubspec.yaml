@@ -1,0 +1,28 @@
+name: gui_yt_dlp
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_advanced_drawer: ^1.3.5
+  flutter_svg: ^2.0.7
+  google_fonts: ^5.1.0
+  provider: ^6.0.5
+  shared_preferences: ^2.2.0
+  sidebarx: ^0.16.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+assets:
+  - assets/logo.svg
+
+flutter:
+  uses-material-design: true
