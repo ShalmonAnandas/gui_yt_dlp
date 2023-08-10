@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-YtDlpVideoData ytDlpVideoDataFromJson(String str) =>
-    YtDlpVideoData.fromJson(json.decode(str));
+YtDlpVideoData ytDlpVideoDataFromJson(String str) => YtDlpVideoData.fromJson(json.decode(str));
 
 String ytDlpVideoDataToJson(YtDlpVideoData data) => json.encode(data.toJson());
 
@@ -29,7 +28,6 @@ class YtDlpVideoData {
   Subtitles subtitles;
   dynamic commentCount;
   dynamic chapters;
-  List<Heatmap> heatmap;
   dynamic uploader;
   String uploaderId;
   String uploaderUrl;
@@ -101,7 +99,6 @@ class YtDlpVideoData {
     required this.subtitles,
     this.commentCount,
     this.chapters,
-    required this.heatmap,
     this.uploader,
     required this.uploaderId,
     required this.uploaderUrl,
@@ -153,10 +150,8 @@ class YtDlpVideoData {
   factory YtDlpVideoData.fromJson(Map<String, dynamic> json) => YtDlpVideoData(
         id: json["id"],
         title: json["title"],
-        formats:
-            List<Format>.from(json["formats"].map((x) => Format.fromJson(x))),
-        thumbnails: List<Thumbnail>.from(
-            json["thumbnails"].map((x) => Thumbnail.fromJson(x))),
+        formats: List<Format>.from(json["formats"].map((x) => Format.fromJson(x))),
+        thumbnails: List<Thumbnail>.from(json["thumbnails"].map((x) => Thumbnail.fromJson(x))),
         thumbnail: json["thumbnail"],
         description: json["description"],
         channelId: json["channel_id"],
@@ -171,18 +166,12 @@ class YtDlpVideoData {
         playableInEmbed: json["playable_in_embed"],
         liveStatus: json["live_status"],
         releaseTimestamp: json["release_timestamp"],
-        formatSortFields:
-            List<String>.from(json["_format_sort_fields"].map((x) => x)),
-        automaticCaptions: Map.from(json["automatic_captions"]).map((k, v) =>
-            MapEntry<String, List<AutomaticCaption>>(
-                k,
-                List<AutomaticCaption>.from(
-                    v.map((x) => AutomaticCaption.fromJson(x))))),
+        formatSortFields: List<String>.from(json["_format_sort_fields"].map((x) => x)),
+        automaticCaptions: Map.from(json["automatic_captions"])
+            .map((k, v) => MapEntry<String, List<AutomaticCaption>>(k, List<AutomaticCaption>.from(v.map((x) => AutomaticCaption.fromJson(x))))),
         subtitles: Subtitles.fromJson(json["subtitles"]),
         commentCount: json["comment_count"],
         chapters: json["chapters"],
-        heatmap:
-            List<Heatmap>.from(json["heatmap"].map((x) => Heatmap.fromJson(x))),
         uploader: json["uploader"],
         uploaderId: json["uploader_id"],
         uploaderUrl: json["uploader_url"],
@@ -203,8 +192,7 @@ class YtDlpVideoData {
         requestedSubtitles: json["requested_subtitles"],
         hasDrm: json["_has_drm"],
         epoch: json["epoch"],
-        requestedFormats: List<Format>.from(
-            json["requested_formats"].map((x) => Format.fromJson(x))),
+        requestedFormats: List<Format>.from(json["requested_formats"].map((x) => Format.fromJson(x))),
         format: json["format"],
         formatId: json["format_id"],
         ext: json["ext"],
@@ -251,15 +239,11 @@ class YtDlpVideoData {
         "playable_in_embed": playableInEmbed,
         "live_status": liveStatus,
         "release_timestamp": releaseTimestamp,
-        "_format_sort_fields":
-            List<dynamic>.from(formatSortFields.map((x) => x)),
-        "automatic_captions": Map.from(automaticCaptions).map((k, v) =>
-            MapEntry<String, dynamic>(
-                k, List<dynamic>.from(v.map((x) => x.toJson())))),
+        "_format_sort_fields": List<dynamic>.from(formatSortFields.map((x) => x)),
+        "automatic_captions": Map.from(automaticCaptions).map((k, v) => MapEntry<String, dynamic>(k, List<dynamic>.from(v.map((x) => x.toJson())))),
         "subtitles": subtitles.toJson(),
         "comment_count": commentCount,
         "chapters": chapters,
-        "heatmap": List<dynamic>.from(heatmap.map((x) => x.toJson())),
         "uploader": uploader,
         "uploader_id": uploaderId,
         "uploader_url": uploaderUrl,
@@ -280,8 +264,7 @@ class YtDlpVideoData {
         "requested_subtitles": requestedSubtitles,
         "_has_drm": hasDrm,
         "epoch": epoch,
-        "requested_formats":
-            List<dynamic>.from(requestedFormats.map((x) => x.toJson())),
+        "requested_formats": List<dynamic>.from(requestedFormats.map((x) => x.toJson())),
         "format": format,
         "format_id": formatId,
         "ext": ext,
@@ -321,8 +304,7 @@ class AutomaticCaption {
     required this.name,
   });
 
-  factory AutomaticCaption.fromJson(Map<String, dynamic> json) =>
-      AutomaticCaption(
+  factory AutomaticCaption.fromJson(Map<String, dynamic> json) => AutomaticCaption(
         ext: json["ext"],
         url: json["url"],
         name: json["name"],
@@ -427,10 +409,7 @@ class Format {
         fps: json["fps"]?.toDouble(),
         rows: json["rows"],
         columns: json["columns"],
-        fragments: json["fragments"] == null
-            ? []
-            : List<Fragment>.from(
-                json["fragments"]!.map((x) => Fragment.fromJson(x))),
+        fragments: json["fragments"] == null ? [] : List<Fragment>.from(json["fragments"]!.map((x) => Fragment.fromJson(x))),
         resolution: json["resolution"],
         aspectRatio: json["aspect_ratio"]?.toDouble(),
         httpHeaders: HttpHeaders.fromJson(json["http_headers"]),
@@ -453,9 +432,7 @@ class Format {
         languagePreference: json["language_preference"],
         dynamicRange: json["dynamic_range"],
         container: json["container"],
-        downloaderOptions: json["downloader_options"] == null
-            ? null
-            : DownloaderOptions.fromJson(json["downloader_options"]),
+        downloaderOptions: json["downloader_options"] == null ? null : DownloaderOptions.fromJson(json["downloader_options"]),
         filesizeApprox: json["filesize_approx"],
       );
 
@@ -472,9 +449,7 @@ class Format {
         "fps": fps,
         "rows": rows,
         "columns": columns,
-        "fragments": fragments == null
-            ? []
-            : List<dynamic>.from(fragments!.map((x) => x.toJson())),
+        "fragments": fragments == null ? [] : List<dynamic>.from(fragments!.map((x) => x.toJson())),
         "resolution": resolution,
         "aspect_ratio": aspectRatio,
         "http_headers": httpHeaders.toJson(),
@@ -509,8 +484,7 @@ class DownloaderOptions {
     required this.httpChunkSize,
   });
 
-  factory DownloaderOptions.fromJson(Map<String, dynamic> json) =>
-      DownloaderOptions(
+  factory DownloaderOptions.fromJson(Map<String, dynamic> json) => DownloaderOptions(
         httpChunkSize: json["http_chunk_size"],
       );
 
